@@ -109,10 +109,18 @@ def dashboard_page(df, df_daily):
     sales_by_timebin = df.groupby('time_bin')['sales'].mean()
     # Sort bins chronologically
     sales_by_timebin = sales_by_timebin.sort_index()
+
     fig_timebin = px.bar(sales_by_timebin, x=sales_by_timebin.index, y=sales_by_timebin.values,
         labels={'x': 'Intervalo de tiempo (cada 30 min)', 'y': 'Ventas promedio'},
         title='Ventas promedio por intervalo de 30 minutos', color=sales_by_timebin.values, color_continuous_scale='Oranges')
     st.plotly_chart(fig_timebin, use_container_width=True)
+
+    # Bar chart: count of sales per 30-minute interval
+    sales_count_timebin = df.groupby('time_bin')['sales'].count().sort_index()
+    fig_count_timebin = px.bar(sales_count_timebin, x=sales_count_timebin.index, y=sales_count_timebin.values,
+        labels={'x': 'Intervalo de tiempo (cada 30 min)', 'y': 'Cantidad de ventas'},
+        title='Cantidad de ventas por intervalo de 30 minutos', color=sales_count_timebin.values, color_continuous_scale='Greens')
+    st.plotly_chart(fig_count_timebin, use_container_width=True)
 
     # Bar chart: sales by moon sign
     sales_by_sign = df_daily.groupby('moon_sign')['sales'].mean().reindex([
