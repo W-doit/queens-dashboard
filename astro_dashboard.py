@@ -217,39 +217,39 @@ def dashboard_page(df, df_daily, month_filter):
     # Display charts in 2 columns per row
     col1, col2 = st.columns(2)
     with col1:
-        st.plotly_chart(fig_weekday, use_container_width=True, key='weekday_avg')
+        st.plotly_chart(fig_weekday, use_container_width=True, key=f'weekday_avg_{month_filter}')
     with col2:
-        st.plotly_chart(fig_count_weekday, use_container_width=True, key='weekday_count')
+        st.plotly_chart(fig_count_weekday, use_container_width=True, key=f'weekday_count_{month_filter}')
 
     col3, col4 = st.columns(2)
     with col3:
-        st.plotly_chart(fig_timebin, use_container_width=True, key='timebin_avg')
+        st.plotly_chart(fig_timebin, use_container_width=True, key=f'timebin_avg_{month_filter}')
     with col4:
-        st.plotly_chart(fig_count_timebin, use_container_width=True, key='timebin_count')
+        st.plotly_chart(fig_count_timebin, use_container_width=True, key=f'timebin_count_{month_filter}')
 
     # Row 3: heatmap full width
-    st.plotly_chart(fig_heatmap, use_container_width=True, key='heatmap')
+    st.plotly_chart(fig_heatmap, use_container_width=True, key=f'heatmap_{month_filter}')
 
     # Row 3.5: count heatmap full width
-    st.plotly_chart(fig_count_heatmap, use_container_width=True, key='count_heatmap')
+    st.plotly_chart(fig_count_heatmap, use_container_width=True, key=f'count_heatmap_{month_filter}')
 
     col5, col6 = st.columns(2)
     with col5:
-        st.plotly_chart(fig_sign, use_container_width=True, key='moon_sign')
+        st.plotly_chart(fig_sign, use_container_width=True, key=f'moon_sign_{month_filter}')
     with col6:
-        st.plotly_chart(fig_count_sign, use_container_width=True, key='moon_count')
+        st.plotly_chart(fig_count_sign, use_container_width=True, key=f'moon_count_{month_filter}')
 
     col7, col8 = st.columns(2)
     with col7:
-        st.plotly_chart(fig_venus, use_container_width=True, key='venus_sign')
+        st.plotly_chart(fig_venus, use_container_width=True, key=f'venus_sign_{month_filter}')
     with col8:
-        st.plotly_chart(fig_count_venus, use_container_width=True, key='venus_count')
+        st.plotly_chart(fig_count_venus, use_container_width=True, key=f'venus_count_{month_filter}')
 
     col9, col10 = st.columns(2)
     with col9:
-        st.plotly_chart(fig_mercury, use_container_width=True, key='mercury_sign')
+        st.plotly_chart(fig_mercury, use_container_width=True, key=f'mercury_sign_{month_filter}')
     with col10:
-        st.plotly_chart(fig_count_mercury, use_container_width=True, key='mercury_count')
+        st.plotly_chart(fig_count_mercury, use_container_width=True, key=f'mercury_count_{month_filter}')
     high_sales = df_daily.sort_values('sales', ascending=False).head(3)
     low_sales = df_daily.sort_values('sales').head(3)
     st.subheader('Posiciones planetarias en días de mayores ventas')
